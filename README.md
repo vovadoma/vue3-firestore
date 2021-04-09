@@ -1,1 +1,1 @@
-# vue-firestore
+# vue3-firestore
