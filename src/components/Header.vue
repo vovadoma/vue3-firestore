@@ -10,7 +10,6 @@
         :to="t.path"
         class="q-mx-sm"
         />
-        {{$q.version}}
         <!-- <q-btn
         v-if='!window.location.href.includes("personalia")'
         label="Personalia"
@@ -27,13 +26,11 @@
         </div>
       </q-toolbar>
     </q-header>
-  <router-view></router-view>
 </template>
 
 <script>
 import firebase from 'firebase'
 export default {
-name: "Main",
   props: ['to'],
   methods: {
     logout () {
@@ -43,7 +40,3 @@ name: "Main",
   }
 }
 </script>
-
-<style scoped>
-
-</style>
