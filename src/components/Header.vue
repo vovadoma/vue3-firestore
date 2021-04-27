@@ -7,7 +7,7 @@
     </div>
     <div v-else>
       <q-tabs>
-        <q-route-tab to="/signin" exact label="Sign In" no-caps />
+        <q-route-tab to="/signup" exact label="Sign Up" no-caps />
         <q-route-tab to="/login" label="Log In" exact no-caps />
       </q-tabs>
     </div>

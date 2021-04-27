@@ -17,9 +17,9 @@ const routes = [
     component: Main,
     children: [
       {
-        name: "signin",
-        path: "/signin",
-        component: () => import("./views/auth/SignIn"),
+        name: "signUp",
+        path: "/signup",
+        component: () => import("./views/auth/SignUp"),
       },
       {
         name: "login",

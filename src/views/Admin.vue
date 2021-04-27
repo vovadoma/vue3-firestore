@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex row">
-    <q-card class="col-lg-1 col-md-2 col-sm-2 ">
-      <q-card-section class="flex-center flex column">
+    <q-card class="col-lg-1 col-md-2 col-sm-3 col-xs-3">
+      <q-card-section class="flex-center flex">
         <q-item>
           <q-tabs v-model="currentCollect" vertical class="text-dark">
             <q-route-tab
@@ -21,7 +21,7 @@
       color="warning"
       v-if="loading"
     />
-    <q-card v-else-if="initTable" class="col-lg-11 col-md-10 col-sm-10">
+    <q-card v-else-if="initTable" class="col-lg-11 col-md-10 col-sm-9 col-xs-9">
       <q-card-section class="q-mt-md flex column items-center">
         <q-select
           v-model="visibleColumns"
