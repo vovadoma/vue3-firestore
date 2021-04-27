@@ -15,7 +15,7 @@ const mutations = {
 const actions = {
     signUp ({ commit }, user) {
         try{
-            db.collection('users').doc(user.uid).set(user).then(()=>{
+            db.collection('users').doc(user.id).set(user).then(()=>{
                 commit('setUser', user)
             })
             return user
