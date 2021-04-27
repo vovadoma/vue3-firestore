@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <form @submit.prevent="signIn">
-            <input type="email" v-model='formData.email'/>
-            <input type="password" v-model='formData.password'/>
-            <button  type='submit'>Submit</button>
-        </form>
+    <div class='row justify-center q-mt-xl absolute-center full-width'>
+        <q-form @submit.prevent="signIn" class='col-xs-11 col-sm-5 col-md-5 col-lg-3 col-xl-3  text-center q-gutter-lg'>
+            <q-input type="email" v-model='formData.email' outlined dense placeholder='email'/>
+            <q-input type="password" v-model='formData.password' outlined dense placeholder='password'/>
+            <q-btn  type='submit'>Registration</q-btn>
+        </q-form>
     </div>
 </template>
 
@@ -22,11 +22,11 @@ export default {
         }
     },
     methods:{
-        ...mapActions('auth',['setUser']),
+        ...mapActions('auth',['signUp']),
         signIn(){
             firebase.auth().createUserWithEmailAndPassword(this.formData.email,this.formData.password).then((resp)=>{
             const user = resp.user
-            this.setUser({ uid: user.uid, email: user.email })
+            this.signUp({ id: user.uid, email: user.email })
             .then(() => {
             this.$router.push('/admin')
             })

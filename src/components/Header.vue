@@ -1,42 +1,37 @@
 <template>
-  <q-header elevated>
-      <q-toolbar>
-        <q-btn
-        v-for="t in to"
-        :key='t.name'
-        :label="t.name"
-        dense
-        flat
-        :to="t.path"
-        class="q-mx-sm"
-        />
-        <!-- <q-btn
-        v-if='!window.location.href.includes("personalia")'
-        label="Personalia"
-        dense
-        flat
-        to="/personalia"
-        class="q-mx-sm"
-        /> -->
-        <q-space />
-        <slot name='search'></slot>
-        <slot name="date"></slot>
-        <div>
-          <q-btn @click="logout">Logout</q-btn>
-        </div>
-      </q-toolbar>
-    </q-header>
+  <q-toolbar>
+    <q-btn flat v-if="user" :to="{ path: '/admin' }">ADMIN</q-btn>
+    <q-space />
+    <div v-if="user">
+      <q-btn @click="logoutUser">Logout</q-btn>
+    </div>
+    <div v-else>
+      <q-tabs>
+        <q-route-tab to="/signin" exact label="Sign In" no-caps />
+        <q-route-tab to="/login" label="Log In" exact no-caps />
+      </q-tabs>
+    </div>
+  </q-toolbar>
 </template>
 
 <script>
-import firebase from 'firebase'
-export default {
-  props: ['to'],
-  methods: {
-    logout () {
-      firebase.auth().signOut()
-      this.$router.push('/login')
-    }
-  }
-}
+  import { mapMutations, mapState } from "vuex";
+  import firebase from "firebase";
+  export default {
+    computed: {
+      ...mapState("auth", ["user"]),
+    },
+    methods: {
+      ...mapMutations("auth", ["logout"]),
+      logoutUser() {
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            this.$router.push("/login");
+            this.logout();
+          });
+      },
+    },
+  };
 </script>
